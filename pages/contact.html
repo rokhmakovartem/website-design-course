@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Сторінка контактів для зв'язку зі мною.">
+    <script src="../assets/js/app.js" defer></script>
+    <title>Контакти - Мій перший HTML-сайт</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Головна</a></li>
+                <li><a href="about.html">Про мене</a></li>
+                <li><a href="contact.html">Контакти</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Зв'яжіться зі мною</h1>
+        
+        <form action="./submit_contact_form_page.html" method="POST">
+            
+            <p>
+                <label for="userName">Ім’я (обов’язково):</label><br>
+                <input type="text" id="userName" name="userName" required minlength="2" maxlength="50">
+            </p>
+
+            <p>
+                <label for="userEmail">Email (обов’язково):</label><br>
+                <input type="email" id="userEmail" name="userEmail" required>
+            </p>
+
+            <p>
+                <label for="userPhone">Телефон (необов’язково):</label><br>
+                <input type="tel" id="userPhone" name="userPhone" pattern="[0-9+]{10,13}" title="Введіть номер телефону (від 10 до 13 символів)">
+            </p>
+
+            <p>
+                <label for="topic">Тема звернення:</label><br>
+                <select id="topic" name="topic">
+                    <option value="study">Навчання</option>
+                    <option value="work">Співпраця</option>
+                    <option value="other">Інше</option>
+                </select>
+            </p>
+
+            <fieldset>
+                <legend>Зручний спосіб зв’язку:</legend>
+                <input type="radio" id="contactEmail" name="contactWay" value="email" checked>
+                <label for="contactEmail">Email</label>
+                
+                <input type="radio" id="contactPhone" name="contactWay" value="phone">
+                <label for="contactPhone">Телефон</label>
+            </fieldset>
+
+            <p>
+                <label for="message">Повідомлення:</label><br>
+                <textarea id="message" name="message" rows="5" cols="40" placeholder="Напишіть ваше повідомлення тут..."></textarea>
+            </p>
+
+            <p>
+                <input type="checkbox" id="rules" name="rules" required>
+                <label for="rules">Я згоден(на) з правилами обробки даних (обов’язково)</label>
+            </p>
+
+            <p>
+                <button type="submit">Надіслати</button>
+                <button type="reset" title="Обережно, це видалить всі введені дані">Очистити форму</button>
+            </p>
+
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Мій перший сайт. Всі права захищені.</p>
+    </footer>
+</body>
+</html>
