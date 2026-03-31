@@ -1,0 +1,69 @@
+/* =========================================
+   АДАПТИВНІСТЬ (МЕДІАЗАПИТИ / MEDIA QUERIES)
+   ========================================= */
+
+@media (max-width: 768px) {
+  
+  /* 1. Навігація стає вертикальною */
+  .nav-list {
+    flex-direction: column;
+    align-items: center; 
+    gap: 16px; 
+  }
+
+  /* Шапка та підвал займають менше місця */
+  .site-header {
+    padding: 16px;
+    border-radius: 0; 
+  }
+  
+  .site-footer {
+    margin-top: 30px;
+    padding: 16px;
+  }
+
+  /* 2. Зменшуємо розмір шрифтів */
+  h1 {
+    font-size: 28px;
+    text-align: center; 
+  }
+  
+  h2 {
+    font-size: 22px;
+  }
+
+  /* 3. Зменшуємо відступи у картках */
+  .container {
+    width: calc(100% - 20px); 
+  }
+  
+  .section,
+  .card {
+    padding: 16px; 
+    margin-top: 16px;
+    margin-bottom: 16px;
+  }
+
+  /* 4. Колонки на сторінці about.html стають одна під одною */
+  .two-column {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  /* 5. Рятуємо таблицю від поломки дизайну */
+  table {
+    display: block; 
+    overflow-x: auto; 
+    white-space: nowrap; 
+  }
+
+  /* 6. Адаптуємо кнопки у формі */
+  button {
+    width: 100%; 
+    margin-bottom: 12px;
+  }
+  
+  button[type="reset"] {
+    margin-left: 0; 
+  }
+}

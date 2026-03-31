@@ -1,0 +1,342 @@
+/* =========================================
+   1. ГЛОБАЛЬНІ ЗМІННІ ТА БАЗОВІ НАЛАШТУВАННЯ
+   ========================================= */
+
+:root {
+  --color-primary: #1d4e89;   
+  --color-accent: #ffb703;    
+  --color-bg: #f7f9fc;        
+  --color-surface: #ffffff;   
+  --color-text: #1f2937;      
+  --color-border: #d9e2ec;    
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+}
+
+/* =========================================
+   2. СТРУКТУРНІ КЛАСИ (КОНТЕЙНЕРИ ТА КАРТКИ)
+   ========================================= */
+
+.container {
+  width: min(1100px, calc(100% - 32px));
+  margin: 0 auto;
+}
+
+.section, 
+.card {
+  background-color: var(--color-surface);
+  padding: 32px;
+  margin-top: 24px;
+  margin-bottom: 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); 
+  border: 1px solid var(--color-border);     
+}
+
+/* =========================================
+   3. НАВІГАЦІЯ (HEADER) ТА ПІДВАЛ (FOOTER)
+   ========================================= */
+
+.site-header {
+  background-color: var(--color-primary);
+  padding: 20px 30px;
+  margin-bottom: 30px;
+  border-radius: 0 0 12px 12px; 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+}
+
+.nav-list {
+  display: flex;
+  justify-content: center; 
+  gap: 40px;               
+  list-style: none;        
+  margin: 0;
+  padding: 0;
+}
+
+.nav-list a {
+  color: var(--color-surface); 
+  text-decoration: none;       
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding-bottom: 5px;
+  border-bottom: 2px solid transparent; 
+  transition: all 0.3s ease;   
+}
+
+.nav-list a:hover {
+  color: var(--color-accent);
+}
+
+.nav-list a.active {
+  color: var(--color-accent);
+  border-bottom: 2px solid var(--color-accent); 
+}
+
+.site-footer {
+  background-color: var(--color-primary);
+  color: var(--color-border); 
+  text-align: center;         
+  font-size: 0.85rem;         
+  padding: 20px;
+  margin-top: 50px;           
+  border-radius: 12px 12px 0 0;
+}
+
+/* =========================================
+   4. ОФОРМЛЕННЯ ТИПОГРАФІКИ ТА СПИСКІВ
+   ========================================= */
+
+h1, h2, h3 {
+  color: var(--color-primary);
+  margin-top: 0;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 24px;
+}
+
+h2 {
+  font-size: 1.8rem;
+  margin-bottom: 16px;
+  border-bottom: 2px solid var(--color-border); 
+  padding-bottom: 8px;
+}
+
+p {
+  margin-bottom: 16px;
+}
+
+ul, ol {
+  margin-bottom: 24px;
+  padding-left: 24px; 
+}
+
+li {
+  margin-bottom: 10px; 
+}
+
+/* =========================================
+   5. ЗОБРАЖЕННЯ ТА ТАБЛИЦІ (РОЗКЛАД)
+   ========================================= */
+
+figure {
+  margin: 30px 0;
+  text-align: center;
+}
+
+img {
+  max-width: 100%; 
+  height: auto;
+  border-radius: 8px; 
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); 
+}
+
+figcaption {
+  font-size: 0.9rem;
+  color: #666;
+  font-style: italic;
+  margin-top: 12px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse; 
+  margin: 24px 0;
+  background-color: var(--color-surface);
+  border-radius: 8px;
+  overflow: hidden; 
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+caption {
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-bottom: 16px;
+  color: var(--color-primary);
+}
+
+th, td {
+  border: 1px solid var(--color-border);
+  padding: 14px 16px; 
+  text-align: left;
+}
+
+th {
+  background-color: var(--color-primary);
+  color: var(--color-surface);
+  font-weight: 600;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f8fafc; 
+}
+
+tbody tr:hover {
+  background-color: #e2e8f0;
+}
+
+/* =========================================
+   6. КОМПОЗИЦІЯ FLEXBOX ТА МЕДІА (ABOUT.HTML)
+   ========================================= */
+
+.two-column {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start; 
+}
+
+.two-column .card {
+  flex: 1; 
+  margin-top: 0; 
+}
+
+video {
+  width: 100%;
+  max-width: 100%; 
+  border-radius: 8px; 
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); 
+  display: block;
+  margin: 16px auto; 
+  background-color: #1f2937; 
+}
+
+audio {
+  width: 100%;
+  margin: 24px 0 16px 0; 
+  border-radius: 30px; 
+}
+
+.two-column .card p {
+  font-size: 0.95rem;
+  color: #4b5563; 
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+.two-column .card p a {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: bold;
+  border-bottom: 1px dashed var(--color-primary); 
+  transition: color 0.3s ease;
+}
+
+.two-column .card p a:hover {
+  color: var(--color-accent);
+  border-bottom-color: var(--color-accent);
+}
+
+/* =========================================
+   7. ОФОРМЛЕННЯ ФОРМИ (CONTACT.HTML)
+   ========================================= */
+
+form p {
+  margin-bottom: 20px;
+}
+
+label {
+  display: inline-block;
+  font-weight: 600;
+  color: var(--color-primary);
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+select,
+textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1.5px solid var(--color-border);
+  border-radius: 10px;
+  background-color: var(--color-surface);
+  font-family: inherit; 
+  font-size: 1rem;
+  transition: all 0.3s ease; 
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none; 
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(29, 78, 137, 0.15); 
+}
+
+input:not(:focus):not(:placeholder-shown):valid {
+  border-color: #10b981; 
+}
+
+input:not(:focus):not(:placeholder-shown):invalid {
+  border-color: #ef4444; 
+}
+
+fieldset {
+  border: 2px solid var(--color-border);
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin-bottom: 24px;
+  background-color: #f8fafc; 
+}
+
+legend {
+  font-weight: bold;
+  color: var(--color-primary);
+  padding: 0 10px;
+  background-color: var(--color-surface); 
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  margin-right: 8px;
+  transform: scale(1.2); 
+  accent-color: var(--color-primary); 
+}
+
+button {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 10px;
+  background-color: var(--color-primary);
+  color: #fff;
+  font-size: 1.05rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-color: var(--color-accent);
+  color: var(--color-text); 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px); 
+}
+
+button[type="reset"] {
+  background-color: #94a3b8; 
+  margin-left: 12px;
+}
+
+button[type="reset"]:hover {
+  background-color: #cbd5e1;
+  color: var(--color-text);
+}

@@ -3,13 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/styles/style.css">
+    <link rel="stylesheet" href="../assets/styles/responsive.css">
     <meta name="description" content="Повідомлення про успішну відправку форми контактів.">
     <title>Успіх! - Мій перший HTML-сайт</title>
 </head>
 <body>
-    <header>
+    <header class="site-header container">
         <nav>
-            <ul>
+            <ul class="nav-list">
                 <li><a href="../index.html">Головна</a></li>
                 <li><a href="about.html">Про мене</a></li>
                 <li><a href="contact.html">Контакти</a></li>
@@ -17,19 +19,21 @@
         </nav>
     </header>
 
-    <main>
-        <h1>Дякуємо за ваше звернення! 🎉</h1>
-        
-        <p>Вашу форму було успішно відправлено. Я отримав ваші дані та зв'яжуся з вами найближчим часом тим способом, який ви вказали як найзручніший.</p>
-        
-        <p>А поки що ви можете повернутися до перегляду мого сайту:</p>
-        
-        <ul>
-            <li><a href="../index.html"><strong>Повернутися на Головну сторінку</strong></a></li>
-        </ul>
+    <main class="container">
+        <section class="section card">
+            <h1>Дякуємо за ваше звернення! 🎉</h1>
+            
+            <p>Вашу форму було успішно відправлено. Я отримав ваші дані та зв'яжуся з вами найближчим часом тим способом, який ви вказали як найзручніший.</p>
+            
+            <p>А поки що ви можете повернутися до перегляду мого сайту:</p>
+            
+            <ul>
+                <li><a href="../index.html"><strong>Повернутися на Головну сторінку</strong></a></li>
+            </ul>
+        </section>
     </main>
 
-    <footer>
+    <footer class="site-footer container">
         <p>&copy; 2026 Мій перший сайт. Всі права захищені.</p>
     </footer>
 </body>
