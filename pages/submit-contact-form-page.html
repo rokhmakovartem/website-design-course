@@ -5,13 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../assets/styles/style.css">
     <link rel="stylesheet" href="../assets/styles/responsive.css">
+    <script src="../assets/js/main.js" defer></script>
     <meta name="description" content="Повідомлення про успішну відправку форми контактів.">
     <title>Успіх! - Мій перший HTML-сайт</title>
 </head>
 <body>
     <header class="site-header container">
         <nav>
-            <ul class="nav-list">
+            <button class="theme-toggle" aria-label="Переключити тему">
+                <span id="icon-sun" data-icon="sun"></span>
+                <span id="icon-moon" data-icon="moon"></span>
+            </button>
+
+            <button class="mobile-menu-btn" aria-expanded="false" aria-controls="main-nav">
+                ☰ Меню
+            </button>
+            
+            <ul class="nav-list" id="main-nav">
                 <li><a href="../index.html">Головна</a></li>
                 <li><a href="about.html">Про мене</a></li>
                 <li><a href="contact.html">Контакти</a></li>
@@ -32,9 +42,13 @@
             </ul>
         </section>
     </main>
-
-    <footer class="site-footer container">
-        <p>&copy; 2026 Мій перший сайт. Всі права захищені.</p>
+    
+    <footer class="container site-footer">
+        <p>&copy; <span id="current-year">2026</span> Мій перший сайт. Всі права захищені.</p>
     </footer>
+
+    <button id="backToTop" class="back-to-top" title="Нагору">
+        <span data-icon="arrowUp"></span>
+    </button>
 </body>
 </html>

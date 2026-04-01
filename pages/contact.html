@@ -5,14 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../assets/styles/style.css">
     <link rel="stylesheet" href="../assets/styles/responsive.css">
+    <script src="../assets/js/main.js" defer></script>
     <meta name="description" content="Сторінка контактів для зв'язку зі мною.">
-    <script src="../assets/js/app.js" defer></script>
     <title>Контакти - Мій перший HTML-сайт</title>
 </head>
 <body>
     <header class="site-header container">
         <nav>
-            <ul class="nav-list">
+            <button class="theme-toggle" aria-label="Переключити тему">
+                <span id="icon-sun" data-icon="sun"></span>
+                <span id="icon-moon" data-icon="moon"></span>
+            </button>
+
+            <button class="mobile-menu-btn" aria-expanded="false" aria-controls="main-nav">
+                ☰ Меню
+            </button>
+            
+            <ul class="nav-list" id="main-nav">
                 <li><a href="../index.html">Головна</a></li>
                 <li><a href="about.html">Про мене</a></li>
                 <li><a href="contact.html" class="active">Контакти</a></li>
@@ -24,31 +33,34 @@
         <section class="section card">
             <h1>Зв'яжіться зі мною</h1>
             
-            <form action="./submit_contact_form_page.html" method="POST">
-                
-                <p>
+            <form id="contactForm" action="./submit-contact-form-page.html" method="POST" novalidate>
+    
+                <div class="form-group">
                     <label for="userName">Ім’я (обов’язково):</label><br>
-                    <input type="text" id="userName" name="userName" required minlength="2" maxlength="50">
-                </p>
+                    <input type="text" id="userName" name="userName" minlength="2" maxlength="50" placeholder="Наприклад: Олексій">
+                    <span class="error-message" id="error-userName"></span>
+                </div>
 
-                <p>
+                <div class="form-group">
                     <label for="userEmail">Email (обов’язково):</label><br>
-                    <input type="email" id="userEmail" name="userEmail" required>
-                </p>
+                    <input type="email" id="userEmail" name="userEmail" placeholder="example@mail.com">
+                    <span class="error-message" id="error-userEmail"></span>
+                </div>
 
-                <p>
+                <div class="form-group">
                     <label for="userPhone">Телефон (необов’язково):</label><br>
-                    <input type="tel" id="userPhone" name="userPhone" pattern="[0-9+]{10,13}" title="Введіть номер телефону (від 10 до 13 символів)">
-                </p>
+                    <input type="tel" id="userPhone" name="userPhone" placeholder="+380...">
+                    <span class="error-message" id="error-userPhone"></span>
+                </div>
 
-                <p>
+                <div class="form-group">
                     <label for="topic">Тема звернення:</label><br>
                     <select id="topic" name="topic">
                         <option value="study">Навчання</option>
                         <option value="work">Співпраця</option>
                         <option value="other">Інше</option>
                     </select>
-                </p>
+                </div>
 
                 <fieldset>
                     <legend>Зручний спосіб зв’язку:</legend>
@@ -59,27 +71,44 @@
                     <label for="contactPhone">Телефон</label>
                 </fieldset>
 
-                <p>
+                <div class="form-group">
                     <label for="message">Повідомлення:</label><br>
-                    <textarea id="message" name="message" rows="5" cols="40" placeholder="Напишіть ваше повідомлення тут..."></textarea>
-                </p>
+                    <textarea id="message" name="message" rows="5" cols="40" placeholder="Напишіть ваше повідомлення тут..." maxlength="500"></textarea>
+                    <div class="textarea-footer">
+                        <span class="error-message" id="error-message"></span>
+                        <span class="char-counter" id="charCounter">0 / 500</span>
+                    </div>
+                </div>
 
-                <p>
-                    <input type="checkbox" id="rules" name="rules" required>
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="rules" name="rules">
                     <label for="rules">Я згоден(на) з правилами обробки даних (обов’язково)</label>
-                </p>
+                    <span class="error-message block-error" id="error-rules"></span>
+                </div>
 
-                <p>
+                <div class="form-group">
                     <button type="submit">Надіслати</button>
                     <button type="reset" title="Обережно, це видалить всі введені дані">Очистити форму</button>
-                </p>
+                </div>
 
             </form>
+            <div id="successMessageBlock" class="success-message-block is-hidden">
+                <h2>Дякуємо за ваше звернення! 🎉</h2>
+                <p>Ваші дані успішно зібрано (демонстрація FormData):</p>
+                
+                <ul id="submittedDataList" class="submitted-data-list"></ul>
+                
+                <button id="resetFormBtn" type="button">Написати ще одне повідомлення</button>
+            </div>
         </section>
     </main>
 
-    <footer class="site-footer container">
-        <p>&copy; 2026 Мій перший сайт. Всі права захищені.</p>
+    <footer class="container site-footer">
+        <p>&copy; <span id="current-year">2026</span> Мій перший сайт. Всі права захищені.</p>
     </footer>
+
+    <button id="backToTop" class="back-to-top" title="Нагору">
+        <span data-icon="arrowUp"></span>
+    </button>
 </body>
 </html>

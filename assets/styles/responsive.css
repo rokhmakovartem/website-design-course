@@ -4,17 +4,36 @@
 
 @media (max-width: 768px) {
   
-  /* 1. Навігація стає вертикальною */
-  .nav-list {
-    flex-direction: column;
-    align-items: center; 
-    gap: 16px; 
+  /* Відображаємо кнопку на мобільних пристроях */
+  .mobile-menu-btn {
+    display: block;
+    margin: 0 auto; /* Вирівнюємо кнопку по центру */
   }
 
+  /* Приховуємо саме меню за замовчуванням */
+  .nav-list {
+    display: none; /* Скрито! */
+    flex-direction: column;
+    align-items: center; 
+    gap: 16px;
+    margin-top: 16px;
+  }
+
+  .nav-list.is-open {
+    display: flex; /* Відображаємо меню, якщо є клас is-open */
+  }
+  
   /* Шапка та підвал займають менше місця */
   .site-header {
     padding: 16px;
     border-radius: 0; 
+  }
+
+  /* На мобільному кнопку теми можна повернути у потік або залишити зліва */
+  .theme-toggle {
+    position: absolute;
+    top: 15px;
+    left: 15px;
   }
   
   .site-footer {
@@ -22,19 +41,19 @@
     padding: 16px;
   }
 
-  /* 2. Зменшуємо розмір шрифтів */
+  /* Зменшуємо розмір шрифтів */
   h1 {
     font-size: 28px;
-    text-align: center; 
+    text-align: center;
   }
   
   h2 {
     font-size: 22px;
   }
 
-  /* 3. Зменшуємо відступи у картках */
+  /* Зменшуємо відступи у картках */
   .container {
-    width: calc(100% - 20px); 
+    width: calc(100% - 20px);
   }
   
   .section,
@@ -44,26 +63,26 @@
     margin-bottom: 16px;
   }
 
-  /* 4. Колонки на сторінці about.html стають одна під одною */
+  /* Колонки на сторінці about.html стають одна під одною */
   .two-column {
     flex-direction: column;
     gap: 16px;
   }
 
-  /* 5. Рятуємо таблицю від поломки дизайну */
+  /* Рятуємо таблицю від поломки дизайну */
   table {
-    display: block; 
+    display: block;
     overflow-x: auto; 
     white-space: nowrap; 
   }
 
-  /* 6. Адаптуємо кнопки у формі */
+  /* Адаптуємо кнопки у формі */
   button {
-    width: 100%; 
+    width: 100%;
     margin-bottom: 12px;
   }
   
   button[type="reset"] {
-    margin-left: 0; 
+    margin-left: 0;
   }
 }
