@@ -14,7 +14,7 @@ function init() {
 }
 
 // ==========================================
-// 1. Реєстр іконок (Рендеринг SVG)
+//  Реєстр іконок (Рендеринг SVG)
 // ==========================================
 const iconRegistry = {
     sun: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icon"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" /></svg>`,
@@ -35,7 +35,7 @@ function initIcons() {
 }
 
 // ==========================================
-// 2. Підсвічування активної сторінки
+// Підсвічування активної сторінки
 // ==========================================
 function initActiveNav() {
     const navLinks = document.querySelectorAll('.nav-list a');
@@ -51,7 +51,7 @@ function initActiveNav() {
 }
 
 // ==========================================
-// 3. Мобільне меню (бургер)
+// Мобільне меню (бургер)
 // ==========================================
 function initMenuToggle() {
     const menuBtn = document.querySelector('.mobile-menu-btn');
@@ -74,7 +74,7 @@ function initMenuToggle() {
 }
 
 // ==========================================
-// 4. Перемикач світлої/темної теми
+// Перемикач світлої/темної теми
 // ==========================================
 function initThemeToggle() {
     const themeBtn = document.querySelector('.theme-toggle');
@@ -95,7 +95,7 @@ function initThemeToggle() {
 }
 
 // ==========================================
-// 5. Кнопка "Вгору"
+// Кнопка "Вгору"
 // ==========================================
 function initBackToTop() {
     const backBtn = document.getElementById('backToTop');
@@ -116,7 +116,7 @@ function initBackToTop() {
 }
 
 // ==========================================
-// 6. Динамічний рік у footer
+// Динамічний рік у footer
 // ==========================================
 function initDynamicYear() {
     const yearElement = document.getElementById('current-year');
@@ -126,7 +126,7 @@ function initDynamicYear() {
 }
 
 // ==========================================
-// 7. Акордеон
+// Акордеон
 // ==========================================
 function initAccordion() {
     const accordionToggles = document.querySelectorAll('.accordion-toggle');
@@ -155,7 +155,7 @@ function initAccordion() {
 }
 
 // ==========================================
-// 9. Модальне вікно (Лайтбокс для зображень)
+// Модальне вікно (Лайтбокс для зображень)
 // ==========================================
 function initModal() {
     const modal = document.getElementById('imageModal');
@@ -221,7 +221,7 @@ function initModal() {
 }
 
 // ==========================================
-// 10. Валідація форми та лічильник символів
+// Валідація форми та лічильник символів
 // ==========================================
 function initFormValidation() {
     const form = document.getElementById('contactForm');
@@ -332,7 +332,7 @@ function initFormValidation() {
 }
 
 // ==========================================
-// 10. Форма: Валідація, Чернетка (Draft) та FormData
+// Форма: Валідація, Чернетка (Draft) та FormData
 // ==========================================
 function initFormValidation() {
     const form = document.getElementById('contactForm');
