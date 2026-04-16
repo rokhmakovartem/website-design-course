@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/styles/style.css">
+    <link rel="stylesheet" href="../assets/styles/responsive.css">
+    <script src="../assets/js/main.js" defer></script>
+    <meta name="description" content="Каталог курсів веб-розробки: HTML, CSS, JavaScript та інструменти. Фільтруйте, сортуйте та додавайте в обране.">
+    <title>Курси - Мій перший HTML-сайт</title>
+</head>
+<body>
+    <header class="site-header container">
+        <nav>
+            <button class="theme-toggle" aria-label="Переключити тему">
+                <span id="icon-sun" data-icon="sun"></span>
+                <span id="icon-moon" data-icon="moon"></span>
+            </button>
+
+            <button class="mobile-menu-btn" aria-expanded="false" aria-controls="main-nav">
+                ☰ Меню
+            </button>
+
+            <ul class="nav-list" id="main-nav">
+                <li><a href="../index.html">Головна</a></li>
+                <li><a href="about.html">Про мене</a></li>
+                <li><a href="courses.html" class="active">Курси</a></li>
+                <li><a href="contact.html">Контакти</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="section">
+            <h1>Каталог курсів</h1>
+            <p>Оберіть курс для вивчення веб-розробки. Використовуйте пошук, фільтри та сортування для зручності.</p>
+        </section>
+
+        <!-- Панель керування каталогом -->
+        <section class="catalog-controls">
+            <!-- Пошук -->
+            <div class="search-box">
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Пошук курсів..."
+                    aria-label="Пошук курсів"
+                >
+                <span class="search-icon" data-icon="search"></span>
+            </div>
+
+            <!-- Фільтри за категоріями -->
+            <div class="filter-buttons" role="group" aria-label="Фільтр за категоріями">
+                <button class="filter-btn active" data-category="all">Всі</button>
+                <button class="filter-btn" data-category="html">HTML</button>
+                <button class="filter-btn" data-category="css">CSS</button>
+                <button class="filter-btn" data-category="javascript">JavaScript</button>
+                <button class="filter-btn" data-category="tools">Інструменти</button>
+            </div>
+
+            <!-- Сортування -->
+            <div class="sort-box">
+                <label for="sortSelect">Сортувати:</label>
+                <select id="sortSelect">
+                    <option value="default">За замовчуванням</option>
+                    <option value="title-asc">За назвою (А-Я)</option>
+                    <option value="title-desc">За назвою (Я-А)</option>
+                    <option value="rating-desc">За рейтингом</option>
+                    <option value="price-asc">Спочатку безкоштовні</option>
+                    <option value="price-desc">Спочатку платні</option>
+                </select>
+            </div>
+        </section>
+
+        <!-- Стани каталогу -->
+        <div id="loadingState" class="catalog-state">
+            <div class="loader"></div>
+            <p>Завантаження курсів...</p>
+        </div>
+
+        <div id="errorState" class="catalog-state is-hidden">
+            <span class="state-icon" data-icon="error"></span>
+            <h3>Помилка завантаження</h3>
+            <p id="errorMessage">Не вдалося завантажити дані курсів.</p>
+            <button id="retryBtn" class="btn-primary">Спробувати знову</button>
+        </div>
+
+        <div id="emptyState" class="catalog-state is-hidden">
+            <span class="state-icon" data-icon="empty"></span>
+            <h3>Нічого не знайдено</h3>
+            <p>За вашим запитом курсів не знайдено. Спробуйте змінити параметри пошуку.</p>
+            <button id="resetFiltersBtn" class="btn-secondary">Скинути фільтри</button>
+        </div>
+
+        <!-- Контейнер для карток курсів -->
+        <div id="catalogContainer" class="catalog-grid is-hidden" data-catalog></div>
+
+        <!-- Кнопка "Показати ще" -->
+        <div id="loadMoreContainer" class="load-more-container is-hidden">
+            <button id="loadMoreBtn" class="btn-primary">
+                Показати ще <span id="remainingCount"></span>
+            </button>
+        </div>
+    </main>
+
+    <footer class="container site-footer">
+        <p>&copy; <span id="current-year">2026</span> Мій перший сайт. Всі права захищені.</p>
+    </footer>
+
+    <!-- Модальне вікно деталей курсу -->
+    <div id="courseModal" class="modal" aria-hidden="true">
+        <div class="modal-overlay" data-close="true"></div>
+
+        <div class="modal-content course-modal-content">
+            <button class="modal-close" aria-label="Закрити вікно" data-close="true">
+                <span data-icon="close"></span>
+            </button>
+
+            <div id="courseModalBody" class="course-modal-body">
+                <!-- Динамічний контент курсу -->
+            </div>
+        </div>
+    </div>
+
+    <button id="backToTop" class="back-to-top" title="Нагору">
+        <span data-icon="arrowUp"></span>
+    </button>
+</body>
+</html>
