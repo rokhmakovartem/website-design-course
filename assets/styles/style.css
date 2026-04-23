@@ -1312,3 +1312,449 @@ body.no-scroll {
 .course-modal-price.free {
     color: #10b981;
 }
+
+/* =========================================
+   ПРАКТИЧНА №11-12: REST API / CRUD СТИЛІ
+   ========================================= */
+
+/* --- Кнопка "Небезпечна дія" (видалення) --- */
+.btn-danger {
+    padding: 10px 14px;
+    border: none;
+    border-radius: 8px;
+    background-color: #ef4444;
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.btn-danger:hover {
+    background-color: #dc2626;
+    transform: translateY(-1px);
+    color: white;
+    box-shadow: 0 4px 8px rgba(239, 68, 68, 0.3);
+}
+
+.btn-danger:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* --- Посилання-кнопка "Редагувати" --- */
+a.btn-edit, a.btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 14px;
+    border: 1.5px solid var(--color-border);
+    border-radius: 8px;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+a.btn-edit:hover, a.btn-secondary:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+    background-color: var(--color-surface);
+}
+
+/* --- Рядок заголовку каталогу з кнопкою --- */
+.catalog-header-section {
+    padding: 24px 32px;
+    margin-bottom: 0;
+}
+
+.catalog-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.catalog-title-row h1 {
+    margin-bottom: 8px;
+}
+
+.catalog-title-row p {
+    margin-bottom: 0;
+    color: #64748b;
+}
+
+.btn-add-course {
+    padding: 12px 24px;
+    background-color: #10b981;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.btn-add-course:hover {
+    background-color: #059669;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+    color: white;
+}
+
+/* --- Бейдж статусу курсу --- */
+.course-status-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    background-color: #fef3c7;
+    color: #92400e;
+}
+
+.course-status-badge.published {
+    background-color: #d1fae5;
+    color: #065f46;
+}
+
+.course-status-badge.draft {
+    background-color: #fef3c7;
+    color: #92400e;
+}
+
+/* Бейдж поверх картки (absolute) */
+.course-card .course-status-badge {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 2;
+}
+
+/* --- Toast-повідомлення --- */
+.toast-container {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    pointer-events: none;
+}
+
+.toast {
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: white;
+    background-color: #1f2937;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: auto;
+    max-width: 420px;
+    text-align: center;
+}
+
+.toast.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.toast.toast-success { background-color: #059669; }
+.toast.toast-error   { background-color: #dc2626; }
+.toast.toast-info    { background-color: var(--color-primary); }
+
+/* --- Модальне вікно підтвердження --- */
+.confirm-modal-content {
+    max-width: 420px;
+    width: 90%;
+    padding: 32px;
+    background-color: var(--color-surface);
+    border-radius: 16px;
+    position: relative;
+    z-index: 2001;
+    transform: scale(0.95);
+    transition: transform 0.3s ease;
+}
+
+.modal.is-open .confirm-modal-content {
+    transform: scale(1);
+}
+
+.confirm-modal-title {
+    margin: 0 0 12px;
+    font-size: 1.3rem;
+    color: var(--color-text);
+}
+
+.confirm-modal-message {
+    margin: 0 0 24px;
+    color: #64748b;
+    line-height: 1.5;
+}
+
+.confirm-modal-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+}
+
+/* --- Пагінація --- */
+#paginationContainer {
+    margin-top: 32px;
+    text-align: center;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+}
+
+.page-btn {
+    min-width: 40px;
+    padding: 8px 14px;
+    border: 1.5px solid var(--color-border);
+    border-radius: 8px;
+    background-color: var(--color-surface);
+    color: var(--color-text);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.page-btn:hover:not(:disabled) {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+    background-color: var(--color-bg);
+}
+
+.page-btn.active {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+    color: white;
+    cursor: default;
+}
+
+.page-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.pagination-info {
+    font-size: 0.85rem;
+    color: #64748b;
+    margin: 0;
+}
+
+/* --- Форма адмінки --- */
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+}
+
+.admin-header h1 {
+    margin: 0;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.form-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 8px;
+    flex-wrap: wrap;
+}
+
+.form-actions button {
+    width: auto;
+}
+
+.required {
+    color: #ef4444;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-weight: 500;
+    color: var(--color-text);
+}
+
+.checkbox-label input[type="checkbox"] {
+    width: auto;
+    flex-shrink: 0;
+}
+
+/* --- Статус форми --- */
+.form-status {
+    padding: 14px 18px;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.form-status-loading {
+    background-color: #eff6ff;
+    color: var(--color-primary);
+    border: 1px solid #bfdbfe;
+}
+
+.form-status-success {
+    background-color: #f0fdf4;
+    color: #065f46;
+    border: 1px solid #a7f3d0;
+}
+
+.form-status-error {
+    background-color: #fef2f2;
+    color: #dc2626;
+    border: 1px solid #fecaca;
+}
+
+/* --- Сторінка деталей курсу --- */
+.details-header {
+    display: flex;
+    gap: 32px;
+    align-items: flex-start;
+}
+
+.details-header-image {
+    flex-shrink: 0;
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(135deg, var(--color-primary) 0%, #2563eb 100%);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.details-header-image img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+    border-radius: 0;
+    box-shadow: none;
+    margin: 0;
+}
+
+.details-header-info {
+    flex: 1;
+}
+
+.details-badges {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+    align-items: center;
+}
+
+.details-description {
+    color: #64748b;
+    font-size: 1.05rem;
+    margin-bottom: 16px;
+}
+
+.details-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    font-size: 0.9rem;
+    color: #64748b;
+    margin-bottom: 20px;
+}
+
+.details-meta span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.details-price-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.details-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.course-category-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    background-color: rgba(29, 78, 137, 0.1);
+    color: var(--color-primary);
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.topics-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+    margin: 0;
+}
+
+.topics-list li {
+    padding: 10px 16px;
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    font-size: 0.95rem;
+    margin: 0;
+    position: relative;
+    padding-left: 30px;
+}
+
+.topics-list li::before {
+    content: "✓";
+    position: absolute;
+    left: 10px;
+    color: #10b981;
+    font-weight: 700;
+}

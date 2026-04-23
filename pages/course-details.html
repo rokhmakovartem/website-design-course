@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/styles/style.css">
+    <link rel="stylesheet" href="../assets/styles/responsive.css">
+    <script src="../js/api.js" defer></script>
+    <script src="../js/ui.js" defer></script>
+    <script src="../assets/js/main.js" defer></script>
+    <title>Деталі курсу</title>
+</head>
+<body>
+    <header class="site-header container">
+        <nav>
+            <button class="theme-toggle" aria-label="Переключити тему">
+                <span id="icon-sun" data-icon="sun"></span>
+                <span id="icon-moon" data-icon="moon"></span>
+            </button>
+            <button class="mobile-menu-btn" aria-expanded="false" aria-controls="main-nav">☰ Меню</button>
+            <ul class="nav-list" id="main-nav">
+                <li><a href="../index.html">Головна</a></li>
+                <li><a href="about.html">Про мене</a></li>
+                <li><a href="courses.html" class="active">Курси</a></li>
+                <li><a href="contact.html">Контакти</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+
+        <!-- Стан завантаження -->
+        <div id="detailsLoading" class="catalog-state">
+            <div class="loader"></div>
+            <p>Завантаження курсу...</p>
+        </div>
+
+        <!-- Стан помилки -->
+        <div id="detailsError" class="catalog-state is-hidden">
+            <span class="state-icon" data-icon="error"></span>
+            <h3>Курс не знайдено</h3>
+            <p id="detailsErrorMsg">Не вдалося завантажити інформацію про курс.</p>
+            <a href="courses.html" class="btn-primary">← Повернутись до каталогу</a>
+        </div>
+
+        <!-- Контент курсу -->
+        <div id="detailsContent" class="is-hidden">
+            <div class="section">
+                <div class="details-header">
+                    <div class="details-header-image">
+                        <img id="detailsImage" src="" alt="" loading="lazy">
+                    </div>
+                    <div class="details-header-info">
+                        <div class="details-badges">
+                            <span id="detailsCategory" class="course-category-badge"></span>
+                            <span id="detailsLevel" class="course-level"></span>
+                            <span id="detailsStatus" class="course-status-badge"></span>
+                        </div>
+                        <h1 id="detailsTitle"></h1>
+                        <p id="detailsDescription" class="details-description"></p>
+                        <div class="details-meta">
+                            <span class="course-rating">
+                                <span data-icon="star"></span>
+                                <strong id="detailsRating"></strong>
+                            </span>
+                            <span><span data-icon="clock"></span><span id="detailsDuration"></span></span>
+                            <span><span data-icon="book"></span><span id="detailsLessons"></span> уроків</span>
+                        </div>
+                        <div class="details-price-row">
+                            <span id="detailsPrice" class="course-modal-price"></span>
+                            <div class="details-actions">
+                                <a id="detailsEditBtn" href="#" class="btn-secondary">Редагувати</a>
+                                <button id="detailsDeleteBtn" class="btn-danger">Видалити курс</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Повний опис</h2>
+                <p id="detailsFullDescription"></p>
+            </div>
+
+            <div class="section" id="detailsTopicsSection">
+                <h2>Що ви вивчите</h2>
+                <ul id="detailsTopics" class="topics-list"></ul>
+            </div>
+
+            <div class="section">
+                <a href="courses.html" class="btn-secondary">← Повернутись до каталогу</a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="container site-footer">
+        <p>&copy; <span id="current-year">2026</span> Мій перший сайт. Всі права захищені.</p>
+    </footer>
+
+    <div id="toastContainer" class="toast-container" aria-live="polite"></div>
+
+    <!-- Confirm modal для видалення -->
+    <div id="confirmModal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="confirmModalTitle">
+        <div class="modal-overlay" data-close="true"></div>
+        <div class="modal-content confirm-modal-content">
+            <h3 id="confirmModalTitle" class="confirm-modal-title">Підтвердження</h3>
+            <p id="confirmMessage" class="confirm-modal-message">Ви впевнені?</p>
+            <div class="confirm-modal-actions">
+                <button id="confirmCancelBtn" class="btn-secondary">Скасувати</button>
+                <button id="confirmOkBtn" class="btn-danger">Видалити</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Ініціалізація сторінки деталей курсу (Б2)
+        document.addEventListener('DOMContentLoaded', async () => {
+            initConfirmModal();
+
+            const params   = new URLSearchParams(window.location.search);
+            const courseId = params.get('id');
+
+            const loadingEl = document.getElementById('detailsLoading');
+            const errorEl   = document.getElementById('detailsError');
+            const contentEl = document.getElementById('detailsContent');
+
+            if (!courseId) {
+                loadingEl.classList.add('is-hidden');
+                errorEl.classList.remove('is-hidden');
+                document.getElementById('detailsErrorMsg').textContent = 'ID курсу не вказано в URL.';
+                return;
+            }
+
+            try {
+                const course = await getCourseById(parseInt(courseId));
+                renderDetails(course);
+                loadingEl.classList.add('is-hidden');
+                contentEl.classList.remove('is-hidden');
+                document.title = course.title + ' — Мій перший HTML-сайт';
+                initIcons();
+            } catch (err) {
+                loadingEl.classList.add('is-hidden');
+                errorEl.classList.remove('is-hidden');
+                document.getElementById('detailsErrorMsg').textContent = err.message;
+            }
+
+            function renderDetails(c) {
+                const levelLabel = { beginner: 'Початковий', intermediate: 'Середній', advanced: 'Просунутий' };
+                const catLabel   = { html: 'HTML', css: 'CSS', javascript: 'JavaScript', tools: 'Інструменти' };
+
+                document.getElementById('detailsImage').src = c.image || '';
+                document.getElementById('detailsImage').alt = c.title;
+                document.getElementById('detailsTitle').textContent = c.title;
+                document.getElementById('detailsDescription').textContent = c.description;
+                document.getElementById('detailsFullDescription').textContent = c.fullDescription || c.description;
+                document.getElementById('detailsRating').textContent = c.rating + ' / 5';
+                document.getElementById('detailsDuration').textContent = c.duration || '—';
+                document.getElementById('detailsLessons').textContent = c.lessons || '—';
+
+                const priceEl = document.getElementById('detailsPrice');
+                priceEl.textContent = c.price === 0 ? 'Безкоштовно' : c.price + ' ₴';
+                priceEl.className = 'course-modal-price' + (c.price === 0 ? ' free' : '');
+
+                const catEl = document.getElementById('detailsCategory');
+                catEl.textContent = catLabel[c.category] || c.category;
+
+                const lvlEl = document.getElementById('detailsLevel');
+                lvlEl.textContent = levelLabel[c.level] || c.level;
+                lvlEl.className = `course-level ${c.level}`;
+
+                const statusEl = document.getElementById('detailsStatus');
+                statusEl.textContent = c.status === 'draft' ? 'Чернетка' : 'Опублікований';
+                statusEl.className = `course-status-badge ${c.status === 'draft' ? 'draft' : 'published'}`;
+
+                const editBtn = document.getElementById('detailsEditBtn');
+                if (editBtn) editBtn.href = `admin.html?id=${c.id}`;
+
+                const topicsEl = document.getElementById('detailsTopics');
+                if (Array.isArray(c.topics) && c.topics.length) {
+                    topicsEl.innerHTML = c.topics.map(t => `<li>${t}</li>`).join('');
+                } else {
+                    document.getElementById('detailsTopicsSection').classList.add('is-hidden');
+                }
+
+                // Видалення
+                const delBtn = document.getElementById('detailsDeleteBtn');
+                if (delBtn) {
+                    delBtn.addEventListener('click', () => {
+                        openConfirmModal(
+                            `Видалити курс «${c.title}»? Це незворотна дія.`,
+                            async () => {
+                                try {
+                                    await deleteCourse(c.id);
+                                    showToast('Курс видалено', 'success');
+                                    setTimeout(() => { window.location.href = 'courses.html'; }, 1200);
+                                } catch (e) {
+                                    showToast('Помилка: ' + e.message, 'error');
+                                }
+                            }
+                        );
+                    });
+                }
+            }
+        });
+    </script>
+</body>
+</html>

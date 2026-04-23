@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/styles/style.css">
+    <link rel="stylesheet" href="../assets/styles/responsive.css">
+    <script src="../js/api.js" defer></script>
+    <script src="../js/ui.js" defer></script>
+    <script src="../js/form.js" defer></script>
+    <!-- Лише функції main.js що не ініціалізують каталог -->
+    <script src="../assets/js/main.js" defer></script>
+    <title>Адмін — Курси</title>
+</head>
+<body>
+    <header class="site-header container">
+        <nav>
+            <button class="theme-toggle" aria-label="Переключити тему">
+                <span id="icon-sun" data-icon="sun"></span>
+                <span id="icon-moon" data-icon="moon"></span>
+            </button>
+            <button class="mobile-menu-btn" aria-expanded="false" aria-controls="main-nav">☰ Меню</button>
+            <ul class="nav-list" id="main-nav">
+                <li><a href="../index.html">Головна</a></li>
+                <li><a href="about.html">Про мене</a></li>
+                <li><a href="courses.html" class="active">Курси</a></li>
+                <li><a href="contact.html">Контакти</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="section">
+            <div class="admin-header">
+                <h1 id="formPageTitle">Додати новий курс</h1>
+                <a href="courses.html" class="btn-secondary">← Повернутись до каталогу</a>
+            </div>
+
+            <!-- Статус-блок (loading / success / error) -->
+            <div id="formStatus" class="form-status is-hidden" role="alert"></div>
+
+            <form id="courseForm" novalidate>
+
+                <!-- Назва -->
+                <div class="form-group">
+                    <label for="title">Назва курсу <span class="required">*</span></label>
+                    <input type="text" id="title" name="title"
+                           placeholder="Наприклад: JavaScript для початківців"
+                           required minlength="3">
+                    <span class="error-message" id="error-title"></span>
+                </div>
+
+                <!-- Категорія + Рівень -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="category">Категорія <span class="required">*</span></label>
+                        <select id="category" name="category" required>
+                            <option value="">— Оберіть категорію —</option>
+                            <option value="html">HTML</option>
+                            <option value="css">CSS</option>
+                            <option value="javascript">JavaScript</option>
+                            <option value="tools">Інструменти</option>
+                        </select>
+                        <span class="error-message" id="error-category"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="level">Рівень <span class="required">*</span></label>
+                        <select id="level" name="level" required>
+                            <option value="">— Оберіть рівень —</option>
+                            <option value="beginner">Початковий</option>
+                            <option value="intermediate">Середній</option>
+                            <option value="advanced">Просунутий</option>
+                        </select>
+                        <span class="error-message" id="error-level"></span>
+                    </div>
+                </div>
+
+                <!-- Короткий опис -->
+                <div class="form-group">
+                    <label for="description">Короткий опис <span class="required">*</span></label>
+                    <textarea id="description" name="description" rows="3"
+                              placeholder="Короткий опис курсу (мінімум 10 символів)"
+                              required minlength="10"></textarea>
+                    <span class="error-message" id="error-description"></span>
+                </div>
+
+                <!-- Повний опис -->
+                <div class="form-group">
+                    <label for="fullDescription">Повний опис</label>
+                    <textarea id="fullDescription" name="fullDescription" rows="5"
+                              placeholder="Детальний опис того, що вивчить студент..."></textarea>
+                </div>
+
+                <!-- Ціна + Рейтинг -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="price">Ціна (₴) <span class="required">*</span></label>
+                        <input type="number" id="price" name="price"
+                               placeholder="0 = безкоштовно" min="0" step="1" value="0">
+                        <span class="error-message" id="error-price"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="rating">Рейтинг (0–5)</label>
+                        <input type="number" id="rating" name="rating"
+                               placeholder="4.5" min="0" max="5" step="0.1" value="4.5">
+                        <span class="error-message" id="error-rating"></span>
+                    </div>
+                </div>
+
+                <!-- Тривалість + Уроки -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="duration">Тривалість</label>
+                        <input type="text" id="duration" name="duration"
+                               placeholder="Наприклад: 4 тижні">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lessons">Кількість уроків</label>
+                        <input type="number" id="lessons" name="lessons"
+                               placeholder="12" min="1" step="1">
+                    </div>
+                </div>
+
+                <!-- Статус + URL зображення -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="status">Статус <span class="required">*</span></label>
+                        <select id="status" name="status" required>
+                            <option value="">— Оберіть статус —</option>
+                            <option value="published">Опублікований</option>
+                            <option value="draft">Чернетка</option>
+                        </select>
+                        <span class="error-message" id="error-status"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="image">URL зображення</label>
+                        <input type="url" id="image" name="image"
+                               placeholder="https://cdn.example.com/icon.png">
+                    </div>
+                </div>
+
+                <!-- Теми -->
+                <div class="form-group">
+                    <label for="topics">Теми (через кому)</label>
+                    <input type="text" id="topics" name="topics"
+                           placeholder="Наприклад: Змінні, Функції, Масиви, Об'єкти">
+                </div>
+
+                <!-- Популярний? -->
+                <div class="form-group checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="featured" name="featured">
+                        Позначити як популярний курс
+                    </label>
+                </div>
+
+                <!-- Кнопки -->
+                <div class="form-actions">
+                    <button type="submit" id="submitBtn" class="btn-primary">Створити курс</button>
+                    <button type="button" id="cancelBtn" class="btn-secondary">Скасувати</button>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <footer class="container site-footer">
+        <p>&copy; <span id="current-year">2026</span> Мій перший сайт. Всі права захищені.</p>
+    </footer>
+
+    <div id="toastContainer" class="toast-container" aria-live="polite"></div>
+</body>
+</html>
